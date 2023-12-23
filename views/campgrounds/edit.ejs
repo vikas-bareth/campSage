@@ -1,0 +1,55 @@
+<% layout('layouts/boilerplate')%>
+   <div class="mb-3 col-md-6 offset-md-3">
+    <h4 class="mb-3">Edit Campground</h4>
+    <form action="/campgrounds/<%=campground._id%>?_method=PUT" class="needs-validation" method="post" novalidate>
+        <div class="mb-3">
+            <label for="title" class="form-label fw-bold">Title</label>
+            <input type="text" class="form-control validate" name="campgrounds[title]" id="title" value="<%=campground.title%>" required>
+        </div>
+        <div class="mb-3">
+          <label for="location" class="form-label fw-bold">Location</label>
+          <input type="text" class="form-control" name="campgrounds[location]" id="location" value="<%=campground.location%>" required>
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label fw-bold">Price</label>
+            <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control" name="campgrounds[price]" id="price" min="0" value="<%=campground.price%>" required>
+                <span class="input-group-text">.00</span>
+              </div>
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label fw-bold">Image</label>
+            <input type="text" placeholder="https://imageURL" class="form-control" name="campgrounds[image]" id="image" value="<%=campground.image%>" required>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label fw-bold">Description</label>
+            <textarea name="campgrounds[description]" id="description" class="form-control" rows="4" required><%=campground.description%></textarea>
+        </div>
+        <button type="submit" class="btn btn-warning">Update</button>
+        <a href="/campgrounds/<%=campground._id%>" class="btn btn-danger">Cancel</a>
+      </form>
+   </div>
+
+
+
+<script>
+    (() => {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+</script>

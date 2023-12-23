@@ -1,0 +1,78 @@
+<% layout('layouts/boilerplate')%>
+<form action="/campgrounds" method="post" class="col-md-6 col-sm-10 offset-md-3 mb-3 needs-validation" novalidate>
+    <h4 class="h4 mb-3">Add New Campground</h4>
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="title" placeholder="" name="campgrounds[title]" required>
+        <label for="title">Campground Title</label>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+        <div class="invalid-feedback">
+            Please enter a title.
+        </div>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="location" placeholder="" name="campgrounds[location]" required>
+        <label for="location">Location</label>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+        <div class="invalid-feedback">
+            Please provide a location
+        </div>
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text">$</span>
+        <div class="form-floating">
+          <input type="number" class="form-control" id="price" placeholder="Price" required>
+          <label for="price">Price</label>
+        </div>
+        
+    </div>
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="image" placeholder="" name="campgrounds[image]" required>
+        <label for="image">Image URL</label>
+    </div>
+    <div class="form-floating mb-3">
+        <textarea class="form-control" placeholder="" id="floatingTextarea2" style="height: 100px" name="campgrounds[description]" required></textarea>
+        <label for="floatingTextarea2">Description</label>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+        <div class="invalid-feedback">
+            Please provide some context
+        </div>
+      </div>
+    <button class="btn btn-success">Submit</button>
+</form>
+
+<script>
+    (() => {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+</script>
+
+
+
+
+
+
+
+
+
+

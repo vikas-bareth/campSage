@@ -1,0 +1,22 @@
+<% layout('layouts/boilerplate')%>
+
+    <h1 class="h1 mb-4">All Campgrounds</h1>
+    <zul>
+        <% campgrounds.map(campground => { %>
+            <div class="card mb-3 w-100">
+                <div class="row g-0">
+                  <div class="col-md-3 overflow-hidden">
+                    <img src="<%=campground.image%>" class="img-fluid rounded-start" alt="..."id="indexCardImg">
+                  </div>
+                  <div class="col-md-9">
+                    <div class="card-body">
+                      <h5 class="card-title"><%=campground.title %></h5>
+                      <p class="card-text"><%=campground.location %></p>
+                      <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                      <a href="/campgrounds/<%=campground._id%>" class="btn btn-primary">View <%=campground.title %></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        <% }) %>
+    </ul>
