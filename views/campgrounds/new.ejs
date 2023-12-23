@@ -2,7 +2,7 @@
 <form action="/campgrounds" method="post" class="col-md-6 col-sm-10 offset-md-3 mb-3 needs-validation" novalidate>
     <h4 class="h4 mb-3">Add New Campground</h4>
     <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="title" placeholder="" name="campgrounds[title]" required>
+        <input type="text" class="form-control" id="title" placeholder="" name="campgrounds[title]" maxlength="40"  required>
         <label for="title">Campground Title</label>
         <div class="valid-feedback">
             Looks good!
@@ -12,7 +12,7 @@
         </div>
     </div>
     <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="location" placeholder="" name="campgrounds[location]" required>
+        <input type="text" class="form-control" id="location" placeholder="" name="campgrounds[location]" maxlength="100" required>
         <label for="location">Location</label>
         <div class="valid-feedback">
             Looks good!
@@ -24,7 +24,7 @@
     <div class="input-group mb-3">
         <span class="input-group-text">$</span>
         <div class="form-floating">
-          <input type="number" class="form-control" id="price" placeholder="Price" required>
+          <input type="number" class="form-control" id="price" placeholder="Price" name="campgrounds[price]" min="0" max="9999"  required>
           <label for="price">Price</label>
         </div>
         
@@ -34,7 +34,7 @@
         <label for="image">Image URL</label>
     </div>
     <div class="form-floating mb-3">
-        <textarea class="form-control" placeholder="" id="floatingTextarea2" style="height: 100px" name="campgrounds[description]" required></textarea>
+        <textarea class="form-control" placeholder="" id="floatingTextarea2" style="height: 100px" name="campgrounds[description]" maxlength="1000" required></textarea>
         <label for="floatingTextarea2">Description</label>
         <div class="valid-feedback">
             Looks good!

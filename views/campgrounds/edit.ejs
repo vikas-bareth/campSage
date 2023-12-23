@@ -4,17 +4,17 @@
     <form action="/campgrounds/<%=campground._id%>?_method=PUT" class="needs-validation" method="post" novalidate>
         <div class="mb-3">
             <label for="title" class="form-label fw-bold">Title</label>
-            <input type="text" class="form-control validate" name="campgrounds[title]" id="title" value="<%=campground.title%>" required>
+            <input type="text" class="form-control validate" name="campgrounds[title]" id="title" value="<%=campground.title%>" maxlength="40" required>
         </div>
         <div class="mb-3">
           <label for="location" class="form-label fw-bold">Location</label>
-          <input type="text" class="form-control" name="campgrounds[location]" id="location" value="<%=campground.location%>" required>
+          <input type="text" class="form-control" name="campgrounds[location]" id="location" value="<%=campground.location%>" maxlength="100" required>
         </div>
         <div class="mb-3">
             <label for="price" class="form-label fw-bold">Price</label>
             <div class="input-group">
                 <span class="input-group-text">$</span>
-                <input type="number" class="form-control" name="campgrounds[price]" id="price" min="0" value="<%=campground.price%>" required>
+                <input type="number" class="form-control" name="campgrounds[price]" id="price" min="0" value="<%=campground.price%>" min="0" max="9999" required>
                 <span class="input-group-text">.00</span>
               </div>
         </div>
@@ -24,7 +24,7 @@
         </div>
         <div class="mb-3">
             <label for="description" class="form-label fw-bold">Description</label>
-            <textarea name="campgrounds[description]" id="description" class="form-control" rows="4" required><%=campground.description%></textarea>
+            <textarea name="campgrounds[description]" id="description" class="form-control" rows="4" required maxlength="1000"><%=campground.description%></textarea>
         </div>
         <button type="submit" class="btn btn-warning">Update</button>
         <a href="/campgrounds/<%=campground._id%>" class="btn btn-danger">Cancel</a>
