@@ -7,9 +7,14 @@ const engine = require('ejs-mate');
 const Joi = require('joi');
 const session = require('express-session');
 const flash = require('connect-flash');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
 
-const campground = require('./routes/campgrounds');
-const reviews = require('./routes/reviews');
+const campgroundRoutes = require('./routes/campgrounds');
+const reviewRoutes = require('./routes/reviews');
+const userRoutes = require('./routes/users')
+
+const User = require('./models/user')
 
 mongoose.connect('mongodb://127.0.0.1:27017/CampSage')
     .then(() => {
@@ -46,15 +51,36 @@ app.use(session({
 
 app.use(flash());
 
+app.use(passport.initialize())
+app.use(passport.session())
+
+passport.use(new LocalStrategy(User.authenticate()))
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 app.use((req, res, next) => {
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
+    res.locals.currentUser = req.user;
     next();
 })
 
+
+
 //express router handlers
-app.use('/campgrounds',campground)
-app.use('/campgrounds/:id/review',reviews)
+app.use('/campgrounds',campgroundRoutes)
+app.use('/campgrounds/:id/review',reviewRoutes)
+app.use('/',userRoutes)
+
+//fakeuser passport
+app.get('/fakeUser',async (req,res) => {
+     const user = new User({username:'cat',email:'cat@gmail.com'});
+     //for registering pass the instance of a user and a password
+     const newUser = await User.register(user,'password')
+     //user.register method is coming from passport-local-mongoose dependency
+     res.send(newUser)
+     
+})
 
 //home route
 app.get('/',(req,res) => {
@@ -70,6 +96,7 @@ app.use((err,req,res,next) => {
     if (!err.message) err.message = 'Oh No, Something Went Wrong!'
     res.status(status).render('error',{err});
 })
+
 
 
 app.listen(port,()=> {
