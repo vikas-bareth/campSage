@@ -1,22 +1,29 @@
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">CampSage</a>
+        <a class="navbar-brand" href="/">CampSage</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link" href="/">Home</a>
-                <a class="nav-link" href="/campgrounds">Campgrounds</a>
-                <a class="nav-link" href="/campgrounds/new">New Campground</a>
+                <a class="nav-link" href="/campgrounds">Campgrounds <span class="bi bi-house-heart"></span></a>
+                <a class="nav-link" href="/campgrounds/new">New Campground <span class="bi bi-cloud-plus"></span></a>
             </div>
-            <div class="navbar-nav ml-auto">
+            <div class="navbar-nav ms-auto">
                 <% if(!currentUser){ %>
-                <a href="/login" class="nav-link">Login</a>
-                <a href="/register" class="nav-link">Register</a>
+                <a href="/login" class="nav-link"><span class="bi bi-person-square"></span> Login</a>
+                <a href="/register" class="nav-link"><span class="bi bi-person-plus-fill"></span> Register</a>
                 <% } else { %>
-                    <a href="/logout" class="nav-link">Logout</a>
+                    <div class="dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false"><span class="bi bi-person-fill"></span> <%=currentUser.username%> </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                          <li class="d-flex justify-content-center">
+                              <a class="dropdown-item" href="/logout">Log out <span class="bi bi-box-arrow-right"></span></a>
+                          </li>
+                      </ul>
+                      </div>
                 <% } %>
             </div>
         </div>
