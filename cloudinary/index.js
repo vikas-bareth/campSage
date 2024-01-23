@@ -1,4 +1,4 @@
-// import {v2 as cloudinary} from 'cloudinary';
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const cloudinary = require('cloudinary').v2;
           
 cloudinary.config({ 
@@ -7,3 +7,15 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_SECRET
 });
 
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params:{
+    folder:'CampSage',
+    allowedFormats:['jpeg','png','jpg']
+  }
+})
+
+module.exports = {
+  cloudinary,
+  storage
+}

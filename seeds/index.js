@@ -21,11 +21,20 @@ const seedDB = async () => {
         const randomPrice = Math.floor(Math.random() * 130 + 10);
         const camp = new Campground({
             author:'65a57d87613db661d5544850',
-            image:'https://source.unsplash.com/collection/483251',
             title:`${sample(descriptors)} ${sample(places)}`,
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
             price:randomPrice,
-            description:'Discover tranquility at Whispering Pines Campground, a hidden gem in a pristine forest. Set up camp under towering trees, beside a babbling brook, or choose a snug cabin. Explore winding trails leading to secret clearings and hidden waterfalls.'
+            description:'Discover tranquility at Whispering Pines Campground, a hidden gem in a pristine forest. Set up camp under towering trees, beside a babbling brook, or choose a snug cabin. Explore winding trails leading to secret clearings and hidden waterfalls.',
+            images:[
+                {
+                    url: 'https://res.cloudinary.com/dyxkk7ptw/image/upload/v1705991957/CampSage/dcoao3ai4kcketmvws0h.jpg',
+                    filename: 'CampSage/dcoao3ai4kcketmvws0h',
+                  },
+                {
+                  url: 'https://res.cloudinary.com/dyxkk7ptw/image/upload/v1705991955/CampSage/wd3rfrvn72rnczxhilpz.jpg',
+                  filename: 'CampSage/wd3rfrvn72rnczxhilpz',
+                }
+              ]
         })
         await camp.save()
     }
